@@ -7,11 +7,12 @@ import axios from "axios"
 //省略进度条写法
 
 async function handleUpload(e: Event) {
-  let chunkSize = 10 * 1024 * 1024
+  // let chunkSize = 10 * 1024 * 1024
   const target = e.target as HTMLInputElement
   if (target.files) {
     const file = target.files[0]
     const { name, size } = target.files[0]
+    let chunkSize = Math.ceil(size / 1024 / 1024)
     let start = 0 //当前的偏移量
     let index = 0 //当前切了多少片
     while (start < size) {
