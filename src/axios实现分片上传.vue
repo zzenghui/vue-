@@ -1,4 +1,6 @@
 <script setup lang='ts' >
+
+// axios实现大文件的分片上传
 import axios from "axios"
 // import md5 from "md5"
 
@@ -26,6 +28,7 @@ async function handleUpload(e: Event) {
       formData.append("file", boldFile)
       formData.append("index", index + "")
       await axios.post("/api/upload", formData)
+      index++
     }
     //通知后端进行文件合并
     axios.get("合并文件的路径").then(() => {
